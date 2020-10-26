@@ -22,43 +22,53 @@ int main(int argc, char** argv)
 {
 
     char c;
-
     while ((c=getchar())!='q')
     {
      switch (c)
      {
          case 't': 
              maskToggle(PORTA, 0xFF); 
+             led_state (PORTA);
              break;
          case 'c':
              maskOff (PORTA, 0xFF);
+             led_state (PORTA);
              break;
          case 's':
              maskOn (PORTA, 0xFF);
+             led_state (PORTA);
              break;
          case 0: 
              switchcase (0, PORTA);
+             led_state (PORTA);
              break;
-         case 1:
-             switchcase (1, PORTA);
+         case '1':
+         switchcase (1, PORTA);
+             led_state (PORTA);
              break;
-         case 2: 
+         case '2': 
              switchcase (2, PORTA);
+             led_state (PORTA);
              break;
-         case 3: 
+         case '3': 
              switchcase (3, PORTA);
+             led_state (PORTA);
              break;
-         case 4:
+         case '4':
              switchcase (4, PORTA);
+             led_state (PORTA);
              break;
-         case 5: 
+         case '5': 
              switchcase (5,PORTA);
+             led_state (PORTA);
              break;
-         case 6: 
+         case '6': 
              switchcase (6, PORTA);
+             led_state (PORTA);
              break;
-         case 7:
+         case '7':
              switchcase (7, PORTA);
+             led_state (PORTA);
              break;
          default: break;
      }

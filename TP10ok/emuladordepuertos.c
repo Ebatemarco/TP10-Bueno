@@ -60,7 +60,7 @@ int bitClr (char puerto, char bit)
             break;
          default: break;
         }   
-   }
+   } 
    return val;
 }
 
@@ -190,21 +190,21 @@ void led_state (char puerto)
     switch (puerto)
     {
         case 'A':
-        for (i=7; i>=0; i++)   
+        for (i=7; i>=0; i--)   
         {
-           printf ("LED %d: %d", i, bitGet (PORTA, i));
-        }
+           printf ("LED %d: %d\n", i, bitGet (PORTA, i));
+        } 
         break;
         case 'B':
-        for (i=7; i>=0; i++)   
+        for (i=7; i>=0; i--)   
         {
-           printf ("LED %d: %d", i, bitGet (PORTB, i));
+           printf ("LED %d: %d\n", i, bitGet (PORTB, i));
         }
         break;
         case 'D':
-        for (i=15; i>=0; i++)   
+        for (i=15; i>=0; i--)   
         {
-           printf ("LED %d: %d", i, bitGet (PORTD, i));
+           printf ("LED %d: %d\n", i, bitGet (PORTD, i));
         }
         break;
         default: break;

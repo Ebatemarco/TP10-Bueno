@@ -20,33 +20,14 @@
 #define PORTB 'B'
 #define PORTD 'D'
 
-typedef struct 
-{
-	uint8_t b0	:1;
-	uint8_t b1	:1;
-	uint8_t b2	:1;
-	uint8_t b3	:1;
-	uint8_t b4	:1;
-	uint8_t b5	:1;
-	uint8_t b6	:1;
-	uint8_t b7	:1;
-		
-} bits8_t; //estructura para leer o escribir los bits del registro
-
-typedef union
-{
-	bits8_t bit_port;
-	uint8_t byte_port;
-}byte_t;  // estructura de los registros A y B para el ingreso bit a bit o byte.
-
 typedef union
 {
     uint16_t portD;
     
     struct
     {
-        byte_t portB;
-        byte_t portA;
+        uint8_t portB;
+        uint8_t portA;
     }registries;
 }port16b_t;// estructura del puerto de 16bits
 
@@ -74,7 +55,7 @@ int maskOn (char puerto, char mask);
  * sin  cambiar  el  estado  de  los  restantes.  Por ejemplo,
  * dado el puerto A, que originalmente se encuentra en el estado 0x01, al
  * aplicarle la máscara 0x0A, el resultado será 0xB.*/
-
+ 
 int maskToggle (char puerto, char bit);
 /*Dado un puerto y una máscara, debe cambiar el estado
  * de todos aquellos  bits  que  estén  prendidos  en  la  máscara  
@@ -86,6 +67,9 @@ int valbit (char puerto, char bit);
 
 int valmask (char puerto, char mask);
 
+int switchcase (char bit, char puerto);
+
+void led_state (char puerto);
 
 #endif /* EMULADORDEPUERTOS_H */
 
