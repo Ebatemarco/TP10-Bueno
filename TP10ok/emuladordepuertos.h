@@ -64,12 +64,15 @@ int maskToggle (char puerto, char bit);
  * al  aplicarle  la  máscara  0x03,  el  resultado  será 0x01.*/
 
 int valbit (char puerto, char bit);
+/*valido si el bit y el puerto ingresados por 
+ * son correctos
+ */
 
 int valmask (char puerto, char mask);
-
-int switchcase (char bit, char puerto);
+//valido la mascara y puerto ingresados por el usuario
 
 void led_state (char puerto);
+//imprime el estado del puerto seleccionado por el usuario
 
 #endif /* EMULADORDEPUERTOS_H */
 

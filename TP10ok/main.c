@@ -15,34 +15,35 @@
 #include <stdlib.h>
 #include "emuladordepuertos.h"
 
-/*
- * 
- */
+int switchcase (char bit, char puerto);
+//cambia el estado del bit al opuesto
+
+
 int main(int argc, char** argv) 
 {
 
     char c; 
-    while ((c=getchar())!='q')
+    while ((c=getchar())!='q') 
     {
-     switch (c)
+     switch (c) //me fijo que ingreso el usuario
      {
-         case 't': 
+         case 't': //cambio los bits al estado opuesto
              maskToggle(PORTA, 0xFF); 
              led_state (PORTA);
              break;
-         case 'c':
+         case 'c': //apago todos los bits
              maskOff (PORTA, 0xFF);
              led_state (PORTA);
              break;
-         case 's':
+         case 's': //prendo todos los bits
              maskOn (PORTA, 0xFF);
              led_state (PORTA);
              break;
-         case '0': 
+         case '0': //prendo el bit 0
              switchcase (0, PORTA);
              led_state (PORTA);
              break;
-         case '1':
+         case '1': //prendo el bit 1
             switchcase (1, PORTA);
              led_state (PORTA);
              break;
@@ -76,12 +77,12 @@ int main(int argc, char** argv)
     return (EXIT_SUCCESS); 
 }
 
-int switchcase (char bit , char puerto)// 0, portA
+int switchcase (char bit , char puerto)
 {
      if (bitGet(puerto, bit))
-        bitClr (puerto, bit);
+        bitClr (puerto, bit); //lo apago
      else 
-        bitSet (puerto, bit);
+        bitSet (puerto, bit); //lo prendo
 }
 
 
