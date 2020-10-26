@@ -21,7 +21,7 @@
 int main(int argc, char** argv) 
 {
 
-    char c;
+    char c; 
     while ((c=getchar())!='q')
     {
      switch (c)
@@ -38,12 +38,12 @@ int main(int argc, char** argv)
              maskOn (PORTA, 0xFF);
              led_state (PORTA);
              break;
-         case 0: 
+         case '0': 
              switchcase (0, PORTA);
              led_state (PORTA);
              break;
          case '1':
-         switchcase (1, PORTA);
+            switchcase (1, PORTA);
              led_state (PORTA);
              break;
          case '2': 
@@ -78,11 +78,10 @@ int main(int argc, char** argv)
 
 int switchcase (char bit , char puerto)// 0, portA
 {
-     if (bitGet(bit, puerto))
-        bitClr (bit, puerto);
+     if (bitGet(puerto, bit))
+        bitClr (puerto, bit);
      else 
-        bitSet (bit, puerto);
+        bitSet (puerto, bit);
 }
-
 
 

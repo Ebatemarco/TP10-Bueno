@@ -9,6 +9,7 @@
 #include "emuladordepuertos.h"
 
 #define MASCARA 0x01
+#define ERROR -1
 
 //variable global
 static port16b_t puertos;
@@ -19,7 +20,7 @@ int bitSet (char puerto, char bit)
     mask<<=bit;
     int val;
     val = valbit (puerto, bit);
-    if (val)
+    if (val!=ERROR)
      {    
        switch (puerto)
         {   
@@ -45,7 +46,7 @@ int bitClr (char puerto, char bit)
     mask=~mask;
     int val;
     val = valbit (puerto, bit);
-    if (val)
+    if (val!=ERROR)
      {    
        switch (puerto)
         {   
@@ -70,7 +71,7 @@ int bitGet (char puerto, char bit)
     mask<<=bit;
     int val;
     val = valbit (puerto, bit);
-    if (val)
+    if (val!=ERROR)
      {    
        switch (puerto)
         {   
@@ -95,13 +96,13 @@ int bitToggle (char puerto, char bit)
     mask<<=bit;
     int val;
     val = valbit (puerto, bit);
-    if (val)
+    if (val!=ERROR)
      {    
        switch (puerto)
         {   
         case 'A':
             puertos.registries.portA |= mask;
-            break;
+            break; 
         case 'B':
             puertos.registries.portB |= mask;
             break;
@@ -118,7 +119,7 @@ int maskOn (char puerto, char mask)
 {
     int val;
     val = valmask (puerto, mask);
-    if (val)
+    if (val!=ERROR)
      {    
        switch (puerto)
         {   
@@ -142,7 +143,7 @@ int maskOff (char puerto, char mask)
     int val;
     val = valmask (puerto, mask);
     mask=~mask;
-    if (val)
+    if (val!=ERROR)
      {    
        switch (puerto)
         {   
@@ -165,7 +166,7 @@ int maskToggle (char puerto, char mask)
 {
     int val;
     val = valmask (puerto, mask);
-    if (val)
+    if (val!=ERROR)
      {    
        switch (puerto)
         {   
@@ -216,9 +217,9 @@ void led_state (char puerto)
 int valbit (char puerto, char bit)
 {
     int val;
-    if ((bit>7 || bit<0) || (puerto != PORTA) || (puerto != PORTB) || (puerto != PORTD))
+    if ((bit>7 || bit<0) || ((puerto != PORTA) && (puerto != PORTB) && (puerto != PORTD)))
     {
-        val=0;
+        val=-1;
     }
     else 
     {    
@@ -231,9 +232,9 @@ int valbit (char puerto, char bit)
 int valmask (char puerto, char mask)
 {
     int val;
-    if ((puerto != PORTA) || (puerto != PORTB) || (puerto != PORTD))
+    if ((puerto != PORTA) && (puerto != PORTB) && (puerto != PORTD))
     {
-        val=0;
+        val=-1;
     }
     else 
     {
